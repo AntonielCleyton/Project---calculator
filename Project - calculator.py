@@ -1,104 +1,112 @@
-import time
-import os
+import time  # Import the time library to use the sleep function
+import os  # Import the os library to use the system function
 
+# Define the Calculator class
 class Calculator:
-    """
-    A simple calculator class to perform basic arithmetic operations.
-    """
-
     def __init__(self):
-        """
-        Initializes the Calculator with a default name.
-        """
-        self.name = 'name'
+        self.name = 'name'  # Initialize the name variable
 
+    # Method to display greetings and ask for the user's name
     def greetings(self):
-        """
-        Greets the user and asks for their name.
-        """
         print('------------------------------')
         print('---Welcome to the calculator!---')
         print('------------------------------')
-        self.name = input('Enter your name:\nAnswer: ')
+        self.name = str(input('Enter your name:\nAnswer: '))  # Ask for the user's name
 
-    def clear_screen(self):
-        """
-        Clears the console screen.
-        """
-        time.sleep(1)
-        os.system('cls' if os.name == 'nt' else 'clear')
-
-    def new_operation(self):
-        """
-        Asks the user if they want to perform a new operation.
-
-        Returns:
-            int: 1 if the user wants to perform a new operation, 2 if not.
-        """
-        while True:
-            try:
-                choice = int(input('Do you want to perform a new operation? 1-YES | 2-NO\nAnswer: '))
-                if choice in [1, 2]:
-                    return choice
-                else:
-                    print('Invalid choice. Please choose 1 or 2.')
-            except ValueError:
-                print('Invalid input. Please enter a number.')
-
+    # Method to perform mathematical operations
     def operations(self):
-        """
-        Main method to perform the calculator operations in a loop until the user decides to exit.
-        """
-        while True:
-            try:
-                choice = int(input(f'Which operation would you like to perform, {self.name}?\n'
-                                   '1 - Addition: +\n'
-                                   '2 - Subtraction: -\n'
-                                   '3 - Multiplication: *\n'
-                                   '4 - Division: /\n'
-                                   '5 - Exponentiation: **\n'
-                                   '_________\nAnswer: '))
-
-                if choice in [1, 2, 3, 4, 5]:
-                    number1 = float(input('Enter the first number: '))
-                    number2 = float(input('Enter the second number: '))
-
-                    if choice == 1:
-                        result = number1 + number2
-                        operation = 'Addition'
-                    elif choice == 2:
-                        result = number1 - number2
-                        operation = 'Subtraction'
-                    elif choice == 3:
-                        result = number1 * number2
-                        operation = 'Multiplication'
-                    elif choice == 4:
-                        if number2 != 0:
-                            result = number1 / number2
-                            operation = 'Division'
-                        else:
-                            print('Error: Division by zero is not allowed.')
-                            continue
-                    elif choice == 5:
-                        result = number1 ** number2
-                        operation = 'Exponentiation'
-
-                    print(f'Result of {operation}: {result}')
-                else:
-                    print(f'{self.name}, you made an invalid choice! Please choose one of the options below.')
-
-                if self.new_operation() == 1:
-                    print(f'Okay, {self.name}! Clearing screen...')
-                    self.clear_screen()
+        while True:  # Infinite loop to allow multiple operations
+            choice = int(input(f'What operation would you like to perform {self.name}:\n1 - Addition: +\n2 - Subtraction: -\n3 - Multiplication: *\n4 - Division: /\n5 - Exponentiation: **\n_________\nAnswer: '))
+            if choice == 1:  # Addition
+                number1 = int(input('Enter the first number: '))
+                number2 = int(input('Enter the second number: '))
+                addition = number1 + number2
+                print(f'Result: {addition}')
+                new_or_exit = int(input('Would you like to perform a new operation? 1-YES | 2-NO\nAnswer: '))
+                if new_or_exit == 1:
+                    print(f'Okay {self.name}! Clearing screen...')
+                    time.sleep(1)
+                    os.system('cls')  # Clear the screen (Windows)
                     continue
                 else:
-                    print(f'Exiting the system! See you soon, {self.name}!')
+                    print(f'Exiting the system! See you soon {self.name}')
+                    time.sleep(1)
                     break
-            except ValueError:
-                print('Invalid input. Please enter a number.')
+            elif choice == 2:  # Subtraction
+                number1 = int(input('Enter the first number: '))
+                number2 = int(input('Enter the second number: '))
+                subtraction = number1 - number2
+                print(f'Result: {subtraction}')
+                new_or_exit = int(input('Would you like to perform a new operation? 1-YES | 2-NO\nAnswer: '))
+                if new_or_exit == 1:
+                    print(f'Okay {self.name}! Clearing screen...')
+                    time.sleep(1)
+                    os.system('cls')
+                else:
+                    print(f'Exiting the system! See you soon {self.name}')
+                    time.sleep(1)
+                    break
+            elif choice == 3:  # Multiplication
+                number1 = int(input('Enter the first number: '))
+                number2 = int(input('Enter the second number: '))
+                multiplication = number1 * number2
+                print(f'Result: {multiplication}')
+                new_or_exit = int(input('Would you like to perform a new operation? 1-YES | 2-NO\nAnswer: '))
+                if new_or_exit == 1:
+                    print(f'Okay {self.name}! Clearing screen...')
+                    time.sleep(1)
+                    os.system('cls')
+                else:
+                    print(f'Exiting the system! See you soon {self.name}')
+                    time.sleep(1)
+                    break
+            elif choice == 4:  # Division
+                number1 = int(input('Enter the first number: '))
+                number2 = int(input('Enter the second number: '))
+                division = number1 / number2
+                print(f'Result: {division}')
+                new_or_exit = int(input('Would you like to perform a new operation? 1-YES | 2-NO\nAnswer: '))
+                if new_or_exit == 1:
+                    print(f'Okay {self.name}! Clearing screen...')
+                    time.sleep(1)
+                    os.system('cls')
+                else:
+                    print(f'Exiting the system! See you soon {self.name}!')
+                    time.sleep(1)
+                    break
+            elif choice == 5:  # Exponentiation
+                number1 = int(input('Enter the first number: '))
+                number2 = int(input('Enter the second number: '))
+                exponentiation = number1 ** number2
+                print(f'Result: {exponentiation}')
+                new_or_exit = int(input('Would you like to perform a new operation? 1-YES | 2-NO\nAnswer: '))
+                if new_or_exit == 1:
+                    print(f'Okay {self.name}! Clearing screen...')
+                    time.sleep(1)
+                    continue
+                else:
+                    print(f'Exiting the system! See you soon {self.name}!')
+                    time.sleep(1)
+                    break
+            else:  # If the user makes an invalid choice
+                print(f'{self.name}, you made an invalid choice! Please choose from the options below:')
+                print('-----------------------------')
+                new_or_exit = int(input('Would you like to perform a new operation? 1-YES | 2-NO\nAnswer: '))
+                if new_or_exit == 1:
+                    print(f'Okay {self.name}! Clearing the screen...')
+                    time.sleep(1)
+                    continue
+                elif new_or_exit == 2:
+                    print(f'Exiting the system! See you soon {self.name}!')
+                    time.sleep(1)
+                    break
+                else:
+                    print(f'You made another wrong choice {self.name}...')
+                    print(f'Ending program. Restart it if you want to perform another operation {self.name}')
+                    time.sleep(2)
+                    break
 
-if __name__ == "__main__":
-    # Create an instance of the Calculator class and start the interaction
-    calculator = Calculator()
-    calculator.greetings()
-    calculator.operations()
+# Initialize the calculator and call the methods
+starting = Calculator()
+starting.greetings()
+starting.operations()
